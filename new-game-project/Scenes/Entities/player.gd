@@ -16,10 +16,21 @@ func _physics_process(_delta: float) -> void:
 	var direction := Input.get_vector("go_left", "go_right", "go_up", "go_down")
 	if direction:
 		velocity = direction * Speed
+		if isVampire:
+			if direction == Vector2.LEFT:
+				$vampire.play("left")
+			elif direction == Vector2.RIGHT:
+				$vampire.play("right")
+			elif direction == Vector2.UP:
+				$vampire.play("up")
+			elif direction == Vector2.DOWN:
+				$vampire.play("arka")
 	else:
 		velocity = Vector2.ZERO
+
 		if isVampire:
 			$vampire.play("idle")
+
 		else:
 			$Bat.play("idle")
 	move_and_slide()
@@ -46,8 +57,6 @@ func transform():
 			Speed = Base_Speed
 			$Bat.visible = true
 			$vampire.visible = false
-
-
 
 func bite():
 	if canBite:
