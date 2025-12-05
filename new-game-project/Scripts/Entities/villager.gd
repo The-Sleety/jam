@@ -21,8 +21,6 @@ func _ready() -> void:
 	astar_grip.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
 	astar_grip.update()
 
-
-
 	for x in tile_map.get_used_rect().size.x:
 		for y in tile_map.get_used_rect().size.y:
 			var tile_position = Vector2i(
@@ -48,7 +46,7 @@ func _physics_process(_delta: float) -> void:
 	if global_position == target_position:
 		current_id_path.pop_front()
 	# Hit player
-	for body in $HitArea.get_overlapping_bodies():
+	for body in $HitArea.get_overlapping_areas():
 		if body.is_in_group("Player"):
 			if canHit:
 				var damage = randi_range(10,20)
