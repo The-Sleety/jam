@@ -17,5 +17,7 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 func getHurt(dmg:int):
-	clamp(Health ,0, 100)
 	Health -= dmg
+	if Health <= 0:
+		get_tree().reload_current_scene()
+		#ölüm ekran ekle
