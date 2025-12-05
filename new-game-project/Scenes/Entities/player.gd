@@ -61,16 +61,17 @@ func transform():
 			$vampire.visible = true
 
 func bite():
-	var enemy = get_tree().get_first_node_in_group("Enemy")
-	if enemy:
-		var enemyDistance = global_position.distance_to(enemy.global_position)
-		if canBite:
-			if enemy.is_in_group("Enemy"):
-				enemy.getHurt(randf_range(40,60))
-				$HitCooldown.start()
-				canBite = false
-	else:
-		return
+	if isVampire:
+		var enemy = get_tree().get_first_node_in_group("Enemy")
+		if enemy:
+			var enemyDistance = global_position.distance_to(enemy.global_position)
+			if canBite:
+				if enemy.is_in_group("Enemy"):
+					enemy.getHurt(randf_range(40,60))
+					$HitCooldown.start()
+					canBite = false
+		else:
+			return
 
 func getHurt(dmg:int):
 	Health -= dmg

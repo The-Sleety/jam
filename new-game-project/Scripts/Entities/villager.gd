@@ -12,8 +12,6 @@ var maxHealth = randf_range(80,120)
 var Health = maxHealth
 var canMove = true
 
-
-
 func _ready() -> void:
 	astar_grip = AStarGrid2D.new()
 	astar_grip.region = tile_map.get_used_rect()
@@ -40,20 +38,23 @@ func _physics_process(_delta: float) -> void:
 		return
 
 	var target_position = tile_map.map_to_local(current_id_path.front())
-	
 	global_position = global_position.move_toward(target_position,Speed)
-	
 	if global_position == target_position:
 		current_id_path.pop_front()
-		
-		
+	
+	
 	var distance_to_player = global_position.distance_to($"../Player".global_position)
+	#var direction = current_id_path.front()
+	#var velocity = direction * Speed
 	if distance_to_player < 16:
 		if canHit:
 			var damage = randi_range(10,20)
 			$"../Player".getHurt(damage)
 			canHit = false
 			$HitCooldown.start()
+			
+	#if velocity == Vector2.ZERO:
+	#	$AnimatedSprite2D.play("idle")
 
 
 func get_new_path():
@@ -64,6 +65,15 @@ func get_new_path():
 
 	if not id_path.is_empty():
 		current_id_path = id_path.slice(1)
+		
+		var last = current_id_path[current_id_path.size() -1].x
+		var current = current_id_path.front().x
+		if current > last:
+			$AnimatedSprite2D.flip_h = true
+			$AnimatedSprite2D.play("right")
+		else:
+			$AnimatedSprite2D.flip_h = false
+			$AnimatedSprite2D.play("right")
 
 func getHurt(Damage: int):
 	canMove = false

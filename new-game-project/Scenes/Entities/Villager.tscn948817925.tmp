@@ -52,6 +52,7 @@ script = ExtResource("1_qg623")
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_qg623")
 animation = &"idle"
+frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)
