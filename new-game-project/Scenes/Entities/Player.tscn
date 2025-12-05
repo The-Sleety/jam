@@ -133,7 +133,7 @@ texture_filter = 1
 position = Vector2(21, 21)
 sprite_frames = SubResource("SpriteFrames_4kc40")
 animation = &"idle"
-frame_progress = 0.0010129479
+frame_progress = 0.46161145
 
 [node name="vampire" type="Sprite2D" parent="."]
 
@@ -144,6 +144,9 @@ position = Vector2(21, 20)
 shape = SubResource("CircleShape2D_g4oe6")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position_smoothing_enabled = true
+
+[node name="HitCooldown" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
 
 [connection signal="pressed" from="CanvasLayer/DeathScreen/Button" to="CanvasLayer/DeathScreen/Button" method="_on_pressed"]

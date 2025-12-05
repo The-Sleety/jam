@@ -6,8 +6,9 @@ var Speed = Base_Speed
 var IsDead : bool = false
 @export var Health : int
 @export var isVampire : bool = false
-
-
+@export var canHit : bool = true
+@export var damage : float = 10
+var canBeBitten = true
 func _physics_process(_delta: float) -> void:
 	var direction := Input.get_vector("go_left", "go_right", "go_up", "go_down")
 	if direction:
@@ -19,11 +20,13 @@ func _physics_process(_delta: float) -> void:
 			pass
 		else:
 			$Bat.play("idle")
-	
 	move_and_slide()
+	
+	if Input.is_action_just_pressed("hit"):
+		bite()
 
 func transform():
-	if Input.is_action_just_pressed("ui_accept"):
+	if Input.is_action_just_pressed("transform"):
 		if isVampire:
 			Speed = flySpeed
 			$Bat.visible = false
@@ -36,8 +39,16 @@ func transform():
 			$vampire.visible = false
 
 func bite():
-	#if is in area and prey health is less than a amount be able to bite 
-	pass
+	if canBeBitten:
+		if $HitArea.get_overlapping_bodies().size() > 0:
+			for body in $HitArea.get_overlapping_bodies():
+				if body.is_in_group("Enemy"):
+					if canHit:
+						body.getHurt()
+						canHit = false
+						$HitCooldown.start()
+	else:
+		return
 
 func getHurt(dmg:int):
 	Health -= dmg
