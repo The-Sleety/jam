@@ -20,6 +20,8 @@ position = Vector2(20, 20)
 shape = SubResource("CircleShape2D_6s1m7")
 
 [node name="HitArea" type="Area2D" parent="."]
+position = Vector2(10, 12.000002)
+scale = Vector2(0.5379919, 0.48689222)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea"]
 position = Vector2(20, 20)
@@ -27,8 +29,11 @@ shape = SubResource("CircleShape2D_qg623")
 
 [node name="HitCooldown" type="Timer" parent="."]
 wait_time = 2.0
-one_shot = true
+
+[node name="HitResultCooldown" type="Timer" parent="."]
+wait_time = 1.5
 
 [connection signal="body_entered" from="HitArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="HitArea" to="." method="_on_detection_area_body_exited"]
 [connection signal="timeout" from="HitCooldown" to="." method="_on_hit_cooldown_timeout"]
+[connection signal="timeout" from="HitResultCooldown" to="." method="_on_hit_result_cooldown_timeout"]

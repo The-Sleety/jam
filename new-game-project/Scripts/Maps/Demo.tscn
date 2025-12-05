@@ -4,8 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://ctomunlfo5xq2" path="res://Scenes/Entities/Villager.tscn" id="2_uamf7"]
 
 [node name="Demo" type="Node2D"]
+position = Vector2(-13, 1)
 
 [node name="Player" parent="." instance=ExtResource("1_78g5s")]
+position = Vector2(452, 293)
 
 [node name="Villager" parent="." instance=ExtResource("2_uamf7")]
 position = Vector2(653, 282)

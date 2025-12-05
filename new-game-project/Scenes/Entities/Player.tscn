@@ -1,16 +1,22 @@
-[gd_scene load_steps=16 format=3 uid="uid://cbjocjb0lxk81"]
+[gd_scene load_steps=23 format=3 uid="uid://cbjocjb0lxk81"]
 
 [ext_resource type="Script" uid="uid://cqqb8sqyiayie" path="res://Scenes/Entities/player.gd" id="1_3kvya"]
-[ext_resource type="Script" uid="uid://pdxarqjqeyo7" path="res://Scenes/Entities/label.gd" id="2_v402d"]
 [ext_resource type="Texture2D" uid="uid://bg46gaqrp4lam" path="res://Assets/bat.png" id="3_agccv"]
 [ext_resource type="Script" uid="uid://d2472cinytg7v" path="res://Scenes/Entities/button.gd" id="3_g4oe6"]
-[ext_resource type="Script" path="res://Scenes/Entities/progress_bar.gd" id="4_g4oe6"]
+[ext_resource type="Script" uid="uid://dtqbvkkqgkudh" path="res://Scenes/Entities/progress_bar.gd" id="4_g4oe6"]
+[ext_resource type="Texture2D" uid="uid://bgyejdjohwrmy" path="res://Assets/Sprite-vampire-idle.png" id="5_86atj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2tapu"]
 radius = 20.024984
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_86atj"]
+size = Vector2(26, 44)
+
 [sub_resource type="LabelSettings" id="LabelSettings_agccv"]
 font_size = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_86atj"]
+bg_color = Color(0.9607843, 1, 0, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_86atj"]
 atlas = ExtResource("3_agccv")
@@ -59,35 +65,64 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
-"speed": 10.0
+"speed": 8.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4kc40"]
+atlas = ExtResource("5_86atj")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wmg1a"]
+atlas = ExtResource("5_86atj")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3m754"]
+atlas = ExtResource("5_86atj")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_46t5s"]
+atlas = ExtResource("5_86atj")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0pa8p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4kc40")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wmg1a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3m754")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_46t5s")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 8.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g4oe6"]
 radius = 85.90693
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
+slide_on_ceiling = false
 script = ExtResource("1_3kvya")
 Health = 100
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="BatCollision" type="CollisionShape2D" parent="."]
 position = Vector2(20, 20)
 shape = SubResource("CircleShape2D_2tapu")
+disabled = true
+
+[node name="VampireCollision" type="CollisionShape2D" parent="."]
+position = Vector2(20, 19)
+shape = SubResource("RectangleShape2D_86atj")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 process_mode = 3
-
-[node name="HealthBar" type="ProgressBar" parent="CanvasLayer"]
-offset_left = 71.0
-offset_top = 62.0
-offset_right = 311.0
-offset_bottom = 89.0
-show_percentage = false
-script = ExtResource("4_g4oe6")
-
-[node name="Label" type="Label" parent="CanvasLayer"]
-offset_right = 40.0
-offset_bottom = 23.0
-script = ExtResource("2_v402d")
 
 [node name="DeathScreen" type="Control" parent="CanvasLayer"]
 visible = false
@@ -128,25 +163,47 @@ grow_vertical = 2
 text = "ÖLDÜN"
 label_settings = SubResource("LabelSettings_agccv")
 
+[node name="HealthBar" type="ProgressBar" parent="CanvasLayer"]
+offset_left = 24.000008
+offset_top = 21.999998
+offset_right = 389.61844
+offset_bottom = 79.33748
+scale = Vector2(0.67830276, 0.749946)
+theme_override_styles/fill = SubResource("StyleBoxFlat_86atj")
+show_percentage = false
+script = ExtResource("4_g4oe6")
+
 [node name="Bat" type="AnimatedSprite2D" parent="."]
+visible = false
 texture_filter = 1
-position = Vector2(21, 21)
+position = Vector2(38, 61)
 sprite_frames = SubResource("SpriteFrames_4kc40")
 animation = &"idle"
-frame_progress = 0.46161145
+frame_progress = 0.16532089
+offset = Vector2(-19, -43)
 
-[node name="vampire" type="Sprite2D" parent="."]
+[node name="vampire" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(20, 15)
+sprite_frames = SubResource("SpriteFrames_0pa8p")
+animation = &"idle"
+frame = 3
+frame_progress = 0.48736936
 
 [node name="HitArea" type="Area2D" parent="."]
+position = Vector2(10.000001, 12.000001)
+scale = Vector2(0.4400003, 0.4000002)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea"]
 position = Vector2(21, 20)
 shape = SubResource("CircleShape2D_g4oe6")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-
 [node name="HitCooldown" type="Timer" parent="."]
-wait_time = 2.0
 one_shot = true
 
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(20, 20)
+zoom = Vector2(1.5, 1.5)
+
 [connection signal="pressed" from="CanvasLayer/DeathScreen/Button" to="CanvasLayer/DeathScreen/Button" method="_on_pressed"]
+[connection signal="timeout" from="HitCooldown" to="." method="_on_hit_cooldown_timeout"]
