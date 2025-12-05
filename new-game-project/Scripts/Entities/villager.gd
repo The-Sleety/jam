@@ -11,6 +11,9 @@ var cooldown = 2.4
 var maxHealth = randf_range(80,120)
 var Health = maxHealth
 var canMove = true
+@export var knockback_resistance: float = 1
+var knockback = Vector2.ZERO
+
 
 func _ready() -> void:
 	astar_grip = AStarGrid2D.new()
@@ -53,7 +56,7 @@ func _physics_process(_delta: float) -> void:
 				body.getHurt(damage)
 				canHit = false
 				$HitCooldown.start()
-	
+
 
 func get_new_path():
 	var start = tile_map.local_to_map(global_position)

@@ -12,19 +12,20 @@ radius = 149.40549
 script = ExtResource("1_qg623")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(20, 20)
 shape = SubResource("CircleShape2D_6s1m7")
 
 [node name="HitArea" type="Area2D" parent="."]
-position = Vector2(10, 12.000002)
+position = Vector2(-10, -8)
 scale = Vector2(0.5379919, 0.48689222)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea"]
-position = Vector2(20, 20)
+position = Vector2(18.58764, 16.430742)
 shape = SubResource("CircleShape2D_qg623")
 
 [node name="HitCooldown" type="Timer" parent="."]
