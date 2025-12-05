@@ -202,7 +202,7 @@ shape = SubResource("CircleShape2D_g4oe6")
 one_shot = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(20, 20)
+position = Vector2(20, 19)
 zoom = Vector2(1.5, 1.5)
 
 [connection signal="pressed" from="CanvasLayer/DeathScreen/Button" to="CanvasLayer/DeathScreen/Button" method="_on_pressed"]
