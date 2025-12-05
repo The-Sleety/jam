@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0i53vod117be"]
+
+[ext_resource type="Script" uid="uid://cyyw4184hagrx" path="res://Scenes/button.gd" id="1_totuj"]
+[ext_resource type="Script" uid="uid://drqo3jjcgc6vm" path="res://Scenes/button_2.gd" id="2_hcxxy"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchor_right = 1.001
+anchor_bottom = 1.0
+offset_right = 0.2319336
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+offset_left = 82.0
+offset_top = 262.0
+offset_right = 226.0
+offset_bottom = 305.0
+theme_override_font_sizes/font_size = 25
+text = "Start Game"
+script = ExtResource("1_totuj")
+
+[node name="Button2" type="Button" parent="CanvasLayer"]
+offset_left = 84.0
+offset_top = 332.0
+offset_right = 137.0
+offset_bottom = 375.0
+theme_override_font_sizes/font_size = 25
+text = "Exit"
+script = ExtResource("2_hcxxy")
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 82.0
+offset_top = 177.0
+offset_right = 287.0
+offset_bottom = 240.0
+theme_override_font_sizes/font_size = 45
+text = "Vampires"
+
+[connection signal="pressed" from="CanvasLayer/Button" to="CanvasLayer/Button" method="_on_pressed"]
+[connection signal="pressed" from="CanvasLayer/Button2" to="CanvasLayer/Button2" method="_on_pressed"]
