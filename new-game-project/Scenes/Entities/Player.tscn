@@ -1,15 +1,69 @@
-[gd_scene load_steps=7 format=3 uid="uid://cbjocjb0lxk81"]
+[gd_scene load_steps=16 format=3 uid="uid://cbjocjb0lxk81"]
 
 [ext_resource type="Script" uid="uid://cqqb8sqyiayie" path="res://Scenes/Entities/player.gd" id="1_3kvya"]
+[ext_resource type="Script" uid="uid://pdxarqjqeyo7" path="res://Scenes/Entities/label.gd" id="2_v402d"]
 [ext_resource type="Texture2D" uid="uid://bg46gaqrp4lam" path="res://Assets/bat.png" id="3_agccv"]
 [ext_resource type="Script" uid="uid://d2472cinytg7v" path="res://Scenes/Entities/button.gd" id="3_g4oe6"]
-[ext_resource type="Script" uid="uid://dtqbvkkqgkudh" path="res://Scenes/Entities/progress_bar.gd" id="4_g4oe6"]
+[ext_resource type="Script" path="res://Scenes/Entities/progress_bar.gd" id="4_g4oe6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2tapu"]
 radius = 20.024984
 
 [sub_resource type="LabelSettings" id="LabelSettings_agccv"]
 font_size = 50
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_86atj"]
+atlas = ExtResource("3_agccv")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yu0ev"]
+atlas = ExtResource("3_agccv")
+region = Rect2(48, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_td8ue"]
+atlas = ExtResource("3_agccv")
+region = Rect2(96, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ynt0t"]
+atlas = ExtResource("3_agccv")
+region = Rect2(144, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_km4ui"]
+atlas = ExtResource("3_agccv")
+region = Rect2(192, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rsj4h"]
+atlas = ExtResource("3_agccv")
+region = Rect2(240, 0, 48, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4kc40"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_86atj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yu0ev")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_td8ue")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ynt0t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_km4ui")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rsj4h")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g4oe6"]
+radius = 85.90693
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_3kvya")
@@ -22,7 +76,7 @@ shape = SubResource("CircleShape2D_2tapu")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 process_mode = 3
 
-[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
+[node name="HealthBar" type="ProgressBar" parent="CanvasLayer"]
 offset_left = 71.0
 offset_top = 62.0
 offset_right = 311.0
@@ -30,43 +84,66 @@ offset_bottom = 89.0
 show_percentage = false
 script = ExtResource("4_g4oe6")
 
-[node name="Button" type="Button" parent="CanvasLayer"]
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("2_v402d")
+
+[node name="DeathScreen" type="Control" parent="CanvasLayer"]
 visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Button" type="Button" parent="CanvasLayer/DeathScreen"]
+layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -148.0
-offset_top = -265.0
-offset_right = 152.0
-offset_bottom = -205.0
+offset_left = 408.0
+offset_top = 343.0
+offset_right = 708.0
+offset_bottom = 403.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "Yeniden Doğ"
 script = ExtResource("3_g4oe6")
 
-[node name="Label" type="Label" parent="CanvasLayer"]
-visible = false
+[node name="Label" type="Label" parent="CanvasLayer/DeathScreen"]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -95.0
-offset_top = -34.5
-offset_right = 95.0
-offset_bottom = 34.5
+offset_left = 461.0
+offset_top = 269.5
+offset_right = 651.0
+offset_bottom = 338.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "ÖLDÜN"
 label_settings = SubResource("LabelSettings_agccv")
 
-[node name="Bat" type="Sprite2D" parent="."]
+[node name="Bat" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(21, 21)
-texture = ExtResource("3_agccv")
+sprite_frames = SubResource("SpriteFrames_4kc40")
+animation = &"idle"
+frame_progress = 0.0010129479
 
 [node name="vampire" type="Sprite2D" parent="."]
 
-[connection signal="pressed" from="CanvasLayer/Button" to="CanvasLayer/Button" method="_on_pressed"]
+[node name="HitArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea"]
+position = Vector2(21, 20)
+shape = SubResource("CircleShape2D_g4oe6")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+
+[connection signal="pressed" from="CanvasLayer/DeathScreen/Button" to="CanvasLayer/DeathScreen/Button" method="_on_pressed"]

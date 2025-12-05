@@ -15,9 +15,10 @@ func _physics_process(_delta: float) -> void:
 		transform()
 	else:
 		velocity = Vector2.ZERO
-
-	if Input.is_action_just_pressed("hurt"):
-		getHurt(25);
+		if isVampire:
+			pass
+		else:
+			$Bat.play("idle")
 	
 	move_and_slide()
 
@@ -25,14 +26,14 @@ func transform():
 	if Input.is_action_just_pressed("ui_accept"):
 		if isVampire:
 			Speed = flySpeed
-			$Bat.visible = true
-			$vampire.visible = false
+			$Bat.visible = false
+			$vampire.visible = true
 			isVampire = false
 		else:
 			isVampire = true
 			Speed = Base_Speed
-			$Bat.visible = false
-			$vampire.visible = true
+			$Bat.visible = true
+			$vampire.visible = false
 
 func bite():
 	#if is in area and prey health is less than a amount be able to bite 
@@ -44,6 +45,5 @@ func getHurt(dmg:int):
 		die()
 		
 func die():
-	$CanvasLayer/Label.show()
-	$CanvasLayer/Button.show()
+	$CanvasLayer/DeathScreen.show()
 	get_tree().paused = true
