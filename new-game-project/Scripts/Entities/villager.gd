@@ -11,8 +11,7 @@ var cooldown = 2.4
 var maxHealth = randf_range(80,120)
 var Health = maxHealth
 var canMove = true
-@export var knockback_resistance: float = 1
-var knockback = Vector2.ZERO
+
 
 
 func _ready() -> void:

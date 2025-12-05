@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cqqb8sqyiayie" path="res://Scenes/Entities/player.gd" id="1_3kvya"]
 [ext_resource type="Texture2D" uid="uid://bg46gaqrp4lam" path="res://Assets/bat.png" id="3_agccv"]
 [ext_resource type="Script" uid="uid://d2472cinytg7v" path="res://Scenes/Entities/button.gd" id="3_g4oe6"]
-[ext_resource type="Script" path="res://Scenes/Entities/progress_bar.gd" id="4_g4oe6"]
+[ext_resource type="Script" uid="uid://dtqbvkkqgkudh" path="res://Scenes/Entities/progress_bar.gd" id="4_g4oe6"]
 [ext_resource type="Texture2D" uid="uid://bgyejdjohwrmy" path="res://Assets/Sprite-vampire-idle.png" id="5_86atj"]
 [ext_resource type="Texture2D" uid="uid://b0rdvn7an3k05" path="res://Assets/Sprite-vampire-arkaya-yuruyus.png" id="5_ynt0t"]
 [ext_resource type="Texture2D" uid="uid://bjjhbc8ntfxrx" path="res://Assets/vampirsagsol.png" id="6_yu0ev"]
@@ -203,7 +203,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_jpvho")
 }],
 "loop": true,
-"name": &"arka",
+"name": &"back",
 "speed": 14.0
 }, {
 "frames": [{
@@ -221,7 +221,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
-"speed": 8.0
+"speed": 14.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -243,8 +243,8 @@ animations = [{
 "texture": SubResource("AtlasTexture_w67ft")
 }],
 "loop": true,
-"name": &"left",
-"speed": 10.0
+"name": &"right",
+"speed": 14.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -300,22 +300,22 @@ process_mode = 3
 visible = false
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 768.0
+offset_bottom = 514.0
 
 [node name="Button" type="Button" parent="CanvasLayer/DeathScreen"]
 layout_mode = 1
-anchors_preset = 7
+anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = 408.0
-offset_top = 343.0
-offset_right = 708.0
-offset_bottom = 403.0
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -21.0
+offset_right = 150.0
+offset_bottom = 39.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 text = "Yeniden Doğ"
 script = ExtResource("3_g4oe6")
 
@@ -326,10 +326,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 461.0
-offset_top = 269.5
-offset_right = 651.0
-offset_bottom = 338.5
+offset_left = -95.0
+offset_top = -151.5
+offset_right = 95.0
+offset_bottom = -82.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "ÖLDÜN"
@@ -358,9 +358,8 @@ offset = Vector2(-19, -43)
 texture_filter = 1
 position = Vector2(20, 15)
 sprite_frames = SubResource("SpriteFrames_0pa8p")
-animation = &"arka"
-frame = 5
-frame_progress = 0.3656897
+animation = &"back"
+frame_progress = 0.79312927
 
 [node name="HitArea" type="Area2D" parent="."]
 position = Vector2(10.000001, 12.000001)
@@ -377,5 +376,6 @@ one_shot = true
 position = Vector2(20, 19)
 zoom = Vector2(1.5, 1.5)
 
+[connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="pressed" from="CanvasLayer/DeathScreen/Button" to="CanvasLayer/DeathScreen/Button" method="_on_pressed"]
 [connection signal="timeout" from="HitCooldown" to="." method="_on_hit_cooldown_timeout"]

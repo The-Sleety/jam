@@ -5,10 +5,9 @@ extends CharacterBody2D
 var Speed = Base_Speed
 var IsDead : bool = false
 @export var Health : int
-@export var isVampire : bool = false
+@export var isVampire : bool = true
 @export var damage : float = 10
 var canBite = true
-@export var knocback_strength: int = 5
 
 
 
@@ -18,21 +17,25 @@ func _physics_process(_delta: float) -> void:
 		velocity = direction * Speed
 		if isVampire:
 			if direction == Vector2.LEFT:
-				$vampire.play("left")
+				$vampire.flip_h = true
+				$vampire.play("right")
 			elif direction == Vector2.RIGHT:
+				$vampire.flip_h = false
 				$vampire.play("right")
 			elif direction == Vector2.UP:
-				$vampire.play("up")
+				$vampire.play("back")
 			elif direction == Vector2.DOWN:
-				$vampire.play("arka")
+				$vampire.play("up")
+			
 	else:
 		velocity = Vector2.ZERO
 
-		if isVampire:
-			$vampire.play("idle")
+	if isVampire and velocity == Vector2.ZERO:
+		$vampire.play("idle")
 
-		else:
-			$Bat.play("idle")
+	else:
+		$Bat.play("idle")
+		
 	move_and_slide()
 	
 	if Input.is_action_just_pressed("hit"):
@@ -40,23 +43,22 @@ func _physics_process(_delta: float) -> void:
 	
 	if Input.is_action_just_pressed("transform"):
 		transform()
-	print(velocity)
 
 func transform():
 		if isVampire:
 			$VampireCollision.disabled = false
 			$BatCollision.disabled = true
 			Speed = flySpeed
-			$Bat.visible = false
-			$vampire.visible = true
+			$Bat.visible = true
+			$vampire.visible = false
 			isVampire = false
-		else:
+		elif !isVampire:
 			$BatCollision.disabled = false
 			$VampireCollision.disabled = true
 			isVampire = true
 			Speed = Base_Speed
-			$Bat.visible = true
-			$vampire.visible = false
+			$Bat.visible = false
+			$vampire.visible = true
 
 func bite():
 	if canBite:
