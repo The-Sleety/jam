@@ -5,7 +5,7 @@ extends CharacterBody2D
 var Speed = Base_Speed
 var IsDead : bool = false
 @export var Health : int
-@export var isVampire : bool = true
+@export var isVampire : bool = false
 @export var damage : float = 10
 var canBite = true
 @export var knocback_strength: int = 5
@@ -46,6 +46,8 @@ func transform():
 			Speed = Base_Speed
 			$Bat.visible = true
 			$vampire.visible = false
+
+
 
 func bite():
 	if canBite:
