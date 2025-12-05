@@ -61,14 +61,14 @@ func transform():
 			$vampire.visible = true
 
 func bite():
-	if canBite:
-		if $HitArea.get_overlapping_bodies().size() > 0:
-			for body in $HitArea.get_overlapping_bodies():
-				if body.is_in_group("Enemy"):
-						body.getHurt(randf_range(40,60))
-						print(body.Health)
-						$HitCooldown.start()
-						canBite = false
+	var enemy = get_tree().get_first_node_in_group("Enemy")
+	if enemy:
+		var enemyDistance = global_position.distance_to(enemy.global_position)
+		if canBite:
+			if enemy.is_in_group("Enemy"):
+				enemy.getHurt(randf_range(40,60))
+				$HitCooldown.start()
+				canBite = false
 	else:
 		return
 

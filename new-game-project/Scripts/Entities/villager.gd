@@ -45,14 +45,15 @@ func _physics_process(_delta: float) -> void:
 	
 	if global_position == target_position:
 		current_id_path.pop_front()
-	# Hit player
-	for body in $HitArea.get_overlapping_areas():
-		if body.is_in_group("Player"):
-			if canHit:
-				var damage = randi_range(10,20)
-				body.getHurt(damage)
-				canHit = false
-				$HitCooldown.start()
+		
+		
+	var distance_to_player = global_position.distance_to($"../Player".global_position)
+	if distance_to_player < 16:
+		if canHit:
+			var damage = randi_range(10,20)
+			$"../Player".getHurt(damage)
+			canHit = false
+			$HitCooldown.start()
 
 
 func get_new_path():

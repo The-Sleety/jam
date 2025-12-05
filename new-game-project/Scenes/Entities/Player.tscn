@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cqqb8sqyiayie" path="res://Scenes/Entities/player.gd" id="1_3kvya"]
 [ext_resource type="Texture2D" uid="uid://bg46gaqrp4lam" path="res://Assets/bat.png" id="3_agccv"]
 [ext_resource type="Script" uid="uid://d2472cinytg7v" path="res://Scenes/Entities/button.gd" id="3_g4oe6"]
-[ext_resource type="Script" uid="uid://dtqbvkkqgkudh" path="res://Scenes/Entities/progress_bar.gd" id="4_g4oe6"]
+[ext_resource type="Script" path="res://Scenes/Entities/progress_bar.gd" id="4_g4oe6"]
 [ext_resource type="Texture2D" uid="uid://bgyejdjohwrmy" path="res://Assets/Sprite-vampire-idle.png" id="5_86atj"]
 [ext_resource type="Texture2D" uid="uid://b0rdvn7an3k05" path="res://Assets/Sprite-vampire-arkaya-yuruyus.png" id="5_ynt0t"]
 [ext_resource type="Texture2D" uid="uid://bjjhbc8ntfxrx" path="res://Assets/vampirsagsol.png" id="6_yu0ev"]
@@ -13,7 +13,7 @@
 radius = 20.024984
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_86atj"]
-size = Vector2(26, 44)
+size = Vector2(26, 18)
 
 [sub_resource type="LabelSettings" id="LabelSettings_agccv"]
 font_size = 50
@@ -290,7 +290,7 @@ shape = SubResource("CircleShape2D_2tapu")
 disabled = true
 
 [node name="VampireCollision" type="CollisionShape2D" parent="."]
-position = Vector2(20, 19)
+position = Vector2(20, 32)
 shape = SubResource("RectangleShape2D_86atj")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
