@@ -3,7 +3,7 @@ extends CharacterBody2D
 @export var Base_Speed = 300.0
 @export var flySpeed : float = 400.0
 var Speed = Base_Speed
-
+var IsDead : bool = false
 @export var Health : int
 @export var isVampire : bool = false
 
@@ -41,5 +41,9 @@ func bite():
 func getHurt(dmg:int):
 	Health -= dmg
 	if Health <= 0:
-		get_tree().reload_current_scene()
-		#ölüm ekran ekle
+		die()
+		
+func die():
+	$CanvasLayer/Label.show()
+	$CanvasLayer/Button.show()
+	get_tree().paused = true

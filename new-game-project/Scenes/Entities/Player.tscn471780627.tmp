@@ -13,14 +13,16 @@ font_size = 50
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_3kvya")
+Base_Speed = null
+flySpeed = null
 Health = 100
+isVampire = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(20, 20)
 shape = SubResource("CircleShape2D_2tapu")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-process_mode = 3
 
 [node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
 offset_left = 71.0
@@ -68,5 +70,3 @@ position = Vector2(21, 21)
 texture = ExtResource("3_agccv")
 
 [node name="vampire" type="Sprite2D" parent="."]
-
-[connection signal="pressed" from="CanvasLayer/Button" to="CanvasLayer/Button" method="_on_pressed"]

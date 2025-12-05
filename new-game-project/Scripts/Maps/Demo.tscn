@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://pces0dkw7b2b"]
 
 [ext_resource type="PackedScene" uid="uid://cbjocjb0lxk81" path="res://Scenes/Entities/Player.tscn" id="1_78g5s"]
-[ext_resource type="PackedScene" uid="uid://ec0bmo6o73sx" path="res://Scenes/Entities/Villager.tscn" id="2_uamf7"]
+[ext_resource type="PackedScene" uid="uid://ctomunlfo5xq2" path="res://Scenes/Entities/Villager.tscn" id="2_uamf7"]
 
 [node name="Demo" type="Node2D"]
 
