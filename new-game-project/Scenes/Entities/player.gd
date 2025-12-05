@@ -11,6 +11,11 @@ func _physics_process(_delta: float) -> void:
 	else:
 		velocity = Vector2.ZERO
 
+	if Input.is_action_just_pressed("hurt"):
+		getHurt(25);
+	
 	move_and_slide()
 
-	
+func getHurt(dmg:int):
+	clamp(Health ,0, 100)
+	Health -= dmg
