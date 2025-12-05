@@ -1,13 +1,15 @@
 [gd_scene load_steps=2 format=3 uid="uid://cbjocjb0lxk81"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2tapu"]
+radius = 20.024984
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_right = 40.0
 offset_bottom = 40.0
+color = Color(0.40069774, 0.40069774, 0.40069768, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(10, 11)
+position = Vector2(20, 20)
 shape = SubResource("CircleShape2D_2tapu")
