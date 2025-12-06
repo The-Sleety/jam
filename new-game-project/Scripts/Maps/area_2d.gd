@@ -2,7 +2,7 @@ extends Area2D
 var playerInside = true
 var canDamage = true
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if !playerInside:
 		if canDamage:
 			if get_tree().get_first_node_in_group("Player").isVampire:

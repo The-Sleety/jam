@@ -41,7 +41,7 @@ func _physics_process(_delta: float) -> void:
 		bite()
 		
 	if Input.is_action_just_pressed("transform"):
-		bite()
+		transform()
 
 func transform():
 		if isVampire:
@@ -64,7 +64,6 @@ func bite():
 	if isVampire:
 		var enemy = get_tree().get_first_node_in_group("Enemy")
 		if enemy:
-			var enemyDistance = global_position.distance_to(enemy.global_position)
 			if canBite:
 				if enemy.is_in_group("Enemy"):
 					canBite = false
