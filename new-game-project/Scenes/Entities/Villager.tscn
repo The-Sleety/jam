@@ -1,9 +1,12 @@
-[gd_scene load_steps=21 format=3 uid="uid://ctomunlfo5xq2"]
+[gd_scene load_steps=25 format=3 uid="uid://ctomunlfo5xq2"]
 
 [ext_resource type="Script" uid="uid://bu5m7p4kmugxl" path="res://Scripts/Entities/villager.gd" id="1_qg623"]
 [ext_resource type="Texture2D" uid="uid://dlee10ejcs8f6" path="res://Assets/Sprite-villager-idle.png" id="2_g1yiw"]
 [ext_resource type="Texture2D" uid="uid://cxnnrqxfpy0iu" path="res://Assets/köylü öldürme.png" id="3_4gvho"]
 [ext_resource type="Texture2D" uid="uid://brgwq5eqj1r0v" path="res://Assets/Sprite-villager-yuruyus-saga.png" id="3_qq6i3"]
+[ext_resource type="AudioStream" uid="uid://dtep8x4b4jauw" path="res://Assets/music/death.mp3" id="5_v5rta"]
+[ext_resource type="AudioStream" uid="uid://df0swkywasc5o" path="res://Assets/music/hit.mp3" id="6_ifrv4"]
+[ext_resource type="AudioStream" uid="uid://b4dkeyi53fpfo" path="res://Assets/music/grasswalking.mp3" id="7_r4ofq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qq6i3"]
 atlas = ExtResource("2_g1yiw")
@@ -23,15 +26,15 @@ region = Rect2(192, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ah03g"]
 atlas = ExtResource("3_4gvho")
-region = Rect2(0, 0, 110, 64)
+region = Rect2(0, 0, 48, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_81rnw"]
 atlas = ExtResource("3_4gvho")
-region = Rect2(110, 0, 110, 64)
+region = Rect2(48, 0, 48, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tiu1n"]
 atlas = ExtResource("3_4gvho")
-region = Rect2(220, 0, 110, 64)
+region = Rect2(96, 0, 48, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v5rta"]
 atlas = ExtResource("3_qq6i3")
@@ -89,12 +92,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_tiu1n")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_81rnw")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ah03g")
 }],
 "loop": true,
 "name": &"killing",
@@ -130,6 +127,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qg623"]
 size = Vector2(40, 57)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_4gvho"]
+radius = 36.05551
+
 [node name="Villager" type="Node2D" groups=["Enemy"]]
 script = ExtResource("1_qg623")
 
@@ -138,7 +138,7 @@ texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_qg623")
 animation = &"killing"
 frame = 2
-frame_progress = 0.36075968
+frame_progress = 0.096946955
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)
@@ -149,6 +149,21 @@ wait_time = 2.0
 
 [node name="HitResultCooldown" type="Timer" parent="."]
 wait_time = 1.5
+
+[node name="Hurtbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CircleShape2D_4gvho")
+
+[node name="Death" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_v5rta")
+
+[node name="Hit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_ifrv4")
+
+[node name="Walk" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_r4ofq")
+parameters/looping = true
 
 [connection signal="timeout" from="HitCooldown" to="." method="_on_hit_cooldown_timeout"]
 [connection signal="timeout" from="HitResultCooldown" to="." method="_on_hit_result_cooldown_timeout"]

@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://c0i53vod117be"]
+[gd_scene load_steps=6 format=3 uid="uid://c0i53vod117be"]
 
 [ext_resource type="FontFile" uid="uid://c0om5ufvy13lu" path="res://Assets/retro-pixel-thick.ttf" id="1_eotax"]
 [ext_resource type="Script" uid="uid://cyyw4184hagrx" path="res://Scenes/button.gd" id="1_totuj"]
 [ext_resource type="Script" uid="uid://drqo3jjcgc6vm" path="res://Scenes/button_2.gd" id="2_hcxxy"]
 [ext_resource type="Texture2D" uid="uid://b33exlptmv6ip" path="res://Assets/SATO YENİ.png" id="3_ur25d"]
+[ext_resource type="AudioStream" uid="uid://b3ktym0ldjrgs" path="res://Assets/music/main-menu.mp3" id="5_udm2q"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -64,6 +65,10 @@ offset_bottom = 240.0
 theme_override_fonts/font = ExtResource("1_eotax")
 theme_override_font_sizes/font_size = 45
 text = "Vampires"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_udm2q")
+autoplay = true
 
 [connection signal="pressed" from="CanvasLayer/Button" to="CanvasLayer/Button" method="_on_pressed"]
 [connection signal="pressed" from="CanvasLayer/Button2" to="CanvasLayer/Button2" method="_on_pressed"]

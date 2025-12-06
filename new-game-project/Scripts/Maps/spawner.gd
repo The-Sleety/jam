@@ -12,7 +12,6 @@ func spawn():
 		v.global_position = global_position
 		spawnCount += 1
 		$Timer.start()
-		print("spawn")
 
 func _on_timer_timeout() -> void:
 	spawn()

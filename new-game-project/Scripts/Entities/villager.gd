@@ -41,19 +41,23 @@ func _physics_process(_delta: float) -> void:
 
 	var target_position = tile_map.map_to_local(current_id_path.front())
 	global_position = global_position.move_toward(target_position,Speed)
+	$Walk.play()
 	if global_position == target_position:
 		current_id_path.pop_front()
 	
 	
 	var distance_to_player = global_position.distance_to($"../Player".global_position)
+	var _knockback_direction = (player.global_position - global_position).normalized()
 	#var direction = current_id_path.front()
 	#var velocity = direction * Speed
 	if distance_to_player <= 16:
 		if canHit:
 			$AnimatedSprite2D.play("killing")
 			var damage = randi_range(10,20)
+			damage_number(damage,Vector2($"../Player".global_position.x, $"../Player".global_position.y - 10) )
 			$"../Player".getHurt(damage)
 			canHit = false
+			$Hit.play()
 			$HitCooldown.start()
 			
 	#if velocity == Vector2.ZERO:
@@ -94,6 +98,8 @@ func getHurt(Damage: int):
 
 	Health -= Damage
 	if Health <= 0:
+		player.score += 20
+		$Death.play()
 		queue_free()
 
 
@@ -103,3 +109,27 @@ func _on_hit_cooldown_timeout() -> void:
 func _on_hit_result_cooldown_timeout() -> void:
 	canMove = true
 	canHit = true
+
+func damage_number(amount: int, position: Vector2):
+	# Create a label on the fly
+	var label := Label.new()
+	label.text = str(amount)
+	label.position = position
+	label.modulate = Color(1, 1, 1, 1)
+	label.add_theme_color_override("font_color", Color.RED)
+
+	# Add to current scene
+	get_tree().current_scene.add_child(label)
+
+	# Make it float + fade + delete
+	var tween := label.create_tween()
+	tween.set_parallel()
+
+	# Float upward
+	tween.tween_property(label, "position:y", position.y - 40, 0.5)
+
+	# Fade out
+	tween.tween_property(label, "modulate:a", 0.0, 0.5)
+
+	# Remove when finished
+	tween.finished.connect(label.queue_free)
