@@ -6,7 +6,7 @@ var Speed = Base_Speed
 var IsDead : bool = false
 @export var Health : int
 @export var isVampire : bool = true
-@export var damage : float = 10
+@export var damage : float 
 var canBite = true
 
 
@@ -29,7 +29,6 @@ func _physics_process(_delta: float) -> void:
 			
 	else:
 		velocity = Vector2.ZERO
-
 	if isVampire and velocity == Vector2.ZERO:
 		$vampire.play("idle")
 
@@ -52,6 +51,7 @@ func transform():
 			$Bat.visible = true
 			$vampire.visible = false
 			isVampire = false
+			damage = 30
 		elif !isVampire:
 			$BatCollision.disabled = false
 			$VampireCollision.disabled = true
@@ -67,6 +67,7 @@ func bite():
 			var enemyDistance = global_position.distance_to(enemy.global_position)
 			if canBite:
 				if enemy.is_in_group("Enemy"):
+					$vampire.play("biting")
 					enemy.getHurt(randf_range(40,60))
 					$HitCooldown.start()
 					canBite = false

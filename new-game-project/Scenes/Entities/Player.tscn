@@ -1,11 +1,12 @@
-[gd_scene load_steps=48 format=3 uid="uid://cbjocjb0lxk81"]
+[gd_scene load_steps=57 format=3 uid="uid://cbjocjb0lxk81"]
 
 [ext_resource type="Script" uid="uid://cqqb8sqyiayie" path="res://Scenes/Entities/player.gd" id="1_3kvya"]
 [ext_resource type="Texture2D" uid="uid://bg46gaqrp4lam" path="res://Assets/bat.png" id="3_agccv"]
 [ext_resource type="Script" uid="uid://d2472cinytg7v" path="res://Scenes/Entities/button.gd" id="3_g4oe6"]
-[ext_resource type="Script" uid="uid://dtqbvkkqgkudh" path="res://Scenes/Entities/progress_bar.gd" id="4_g4oe6"]
+[ext_resource type="Script" path="res://Scenes/Entities/progress_bar.gd" id="4_g4oe6"]
 [ext_resource type="Texture2D" uid="uid://bgyejdjohwrmy" path="res://Assets/Sprite-vampire-idle.png" id="5_86atj"]
 [ext_resource type="Texture2D" uid="uid://b0rdvn7an3k05" path="res://Assets/Sprite-vampire-arkaya-yuruyus.png" id="5_ynt0t"]
+[ext_resource type="Texture2D" uid="uid://6xlxaix2b8o8" path="res://Assets/Sprite-vampire-biting.png" id="6_km4ui"]
 [ext_resource type="Texture2D" uid="uid://bjjhbc8ntfxrx" path="res://Assets/vampirsagsol.png" id="6_yu0ev"]
 [ext_resource type="Texture2D" uid="uid://bxm6v7hu1ma3d" path="res://Assets/Sprite-vampire-one-yuruyus.png" id="7_td8ue"]
 
@@ -101,6 +102,38 @@ region = Rect2(384, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jpvho"]
 atlas = ExtResource("5_ynt0t")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_toelj"]
+atlas = ExtResource("6_km4ui")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l8r55"]
+atlas = ExtResource("6_km4ui")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xilvn"]
+atlas = ExtResource("6_km4ui")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sgkpy"]
+atlas = ExtResource("6_km4ui")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jmt84"]
+atlas = ExtResource("6_km4ui")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_55uah"]
+atlas = ExtResource("6_km4ui")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lro1s"]
+atlas = ExtResource("6_km4ui")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m16cr"]
+atlas = ExtResource("6_km4ui")
 region = Rect2(448, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4kc40"]
@@ -205,6 +238,35 @@ animations = [{
 "loop": true,
 "name": &"back",
 "speed": 14.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_toelj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l8r55")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xilvn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sgkpy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jmt84")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_55uah")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lro1s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m16cr")
+}],
+"loop": true,
+"name": &"biting",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -358,8 +420,7 @@ offset = Vector2(-19, -43)
 texture_filter = 1
 position = Vector2(20, 15)
 sprite_frames = SubResource("SpriteFrames_0pa8p")
-animation = &"back"
-frame_progress = 0.79312927
+animation = &"biting"
 
 [node name="HitArea" type="Area2D" parent="."]
 position = Vector2(10.000001, 12.000001)
@@ -374,7 +435,7 @@ one_shot = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(20, 19)
-zoom = Vector2(1.5, 1.5)
+zoom = Vector2(0.885, 0.885)
 
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="pressed" from="CanvasLayer/DeathScreen/Button" to="CanvasLayer/DeathScreen/Button" method="_on_pressed"]

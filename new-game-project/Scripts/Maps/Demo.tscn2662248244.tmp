@@ -143,56 +143,9 @@ autostart = true
 [node name="Spawners" type="Node2D" parent="."]
 
 [node name="Spawner" type="Node2D" parent="Spawners"]
-position = Vector2(2531, 1369)
 script = ExtResource("9_f88e7")
-villager = ExtResource("2_uamf7")
 
 [node name="Timer" type="Timer" parent="Spawners/Spawner"]
-wait_time = 2.0
-autostart = true
-
-[node name="Spawner2" type="Node2D" parent="Spawners"]
-position = Vector2(3108, 895)
-script = ExtResource("9_f88e7")
-villager = ExtResource("2_uamf7")
-
-[node name="Timer" type="Timer" parent="Spawners/Spawner2"]
-wait_time = 2.0
-autostart = true
-
-[node name="Spawner3" type="Node2D" parent="Spawners"]
-position = Vector2(3641, 1332)
-script = ExtResource("9_f88e7")
-villager = ExtResource("2_uamf7")
-
-[node name="Timer" type="Timer" parent="Spawners/Spawner3"]
-wait_time = 2.0
-autostart = true
-
-[node name="Spawner4" type="Node2D" parent="Spawners"]
-position = Vector2(3930, 636)
-script = ExtResource("9_f88e7")
-villager = ExtResource("2_uamf7")
-
-[node name="Timer" type="Timer" parent="Spawners/Spawner4"]
-wait_time = 2.0
-autostart = true
-
-[node name="Spawner5" type="Node2D" parent="Spawners"]
-position = Vector2(3175, 1968)
-script = ExtResource("9_f88e7")
-villager = ExtResource("2_uamf7")
-
-[node name="Timer" type="Timer" parent="Spawners/Spawner5"]
-wait_time = 2.0
-autostart = true
-
-[node name="Spawner6" type="Node2D" parent="Spawners"]
-position = Vector2(2576, 540)
-script = ExtResource("9_f88e7")
-villager = ExtResource("2_uamf7")
-
-[node name="Timer" type="Timer" parent="Spawners/Spawner6"]
 wait_time = 2.0
 autostart = true
 
@@ -200,8 +153,3 @@ autostart = true
 [connection signal="body_exited" from="Area2D" to="Area2D" method="_on_body_exited"]
 [connection signal="timeout" from="Area2D/Timer" to="Area2D" method="_on_timer_timeout"]
 [connection signal="timeout" from="Spawners/Spawner/Timer" to="Spawners/Spawner" method="_on_timer_timeout"]
-[connection signal="timeout" from="Spawners/Spawner2/Timer" to="Spawners/Spawner2" method="_on_timer_timeout"]
-[connection signal="timeout" from="Spawners/Spawner3/Timer" to="Spawners/Spawner3" method="_on_timer_timeout"]
-[connection signal="timeout" from="Spawners/Spawner4/Timer" to="Spawners/Spawner4" method="_on_timer_timeout"]
-[connection signal="timeout" from="Spawners/Spawner5/Timer" to="Spawners/Spawner5" method="_on_timer_timeout"]
-[connection signal="timeout" from="Spawners/Spawner6/Timer" to="Spawners/Spawner6" method="_on_timer_timeout"]
