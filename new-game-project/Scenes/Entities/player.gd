@@ -117,7 +117,10 @@ func getHurt(dmg:int):
 		die()
 		
 func die():
-	$Death.play()
+	$CanvasLayer/DeathScreen.show()
+	$CanvasLayer/SCORE.hide()
+	$CanvasLayer/HealthBar.hide()
+	get_tree().paused = true
 
 
 func _on_hit_cooldown_timeout() -> void:
@@ -149,9 +152,4 @@ func damage_number(amount: int, position: Vector2):
 
 func pause():
 	$CanvasLayer/PauseScreen.show()
-	get_tree().paused = true
-
-
-func _on_death_finished() -> void:
-	$CanvasLayer/DeathScreen.show()
 	get_tree().paused = true

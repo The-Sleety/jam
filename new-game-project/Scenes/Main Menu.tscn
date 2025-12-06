@@ -9,21 +9,6 @@
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_udm2q"]
 light_mode = 1
 
-[sub_resource type="Animation" id="Animation_udm2q"]
-resource_name = "fade"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_mjet1"]
 length = 0.001
 tracks/0/type = "value"
@@ -41,6 +26,21 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_0126h"]
 resource_name = "closeCanvas"
+
+[sub_resource type="Animation" id="Animation_udm2q"]
+resource_name = "fade"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0126h"]
 _data = {
@@ -78,7 +78,7 @@ offset_left = 69.0
 offset_top = 171.0
 offset_right = 289.0
 offset_bottom = 394.0
-color = Color(0, 0, 0, 0.5686275)
+color = Color(0, 0, 0, 0.28235295)
 
 [node name="Button" type="Button" parent="CanvasLayer"]
 texture_filter = 1
@@ -113,7 +113,7 @@ offset_right = 287.0
 offset_bottom = 240.0
 theme_override_fonts/font = ExtResource("1_eotax")
 theme_override_font_sizes/font_size = 45
-text = "Vampires"
+text = "The Vampire"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_udm2q")
