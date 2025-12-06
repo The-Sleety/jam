@@ -69,14 +69,21 @@ func get_new_path():
 		current_id_path = id_path.slice(1)
 		
 		if current_id_path.size() != 0:
-			var last = current_id_path[current_id_path.size() -1].x
-			var current = current_id_path.front().x
-			if current > last:
+			var last_x = current_id_path[current_id_path.size() -1].x
+			var curren_x= current_id_path.front().x
+			var last_y = current_id_path[current_id_path.size() -1].y
+			var curren_y= current_id_path.front().y
+			if curren_x > last_x:
 				$AnimatedSprite2D.flip_h = true
 				#$AnimatedSprite2D.play("right")
 			else:
 				$AnimatedSprite2D.flip_h = false
 				#$AnimatedSprite2D.play("right")
+			if curren_y > last_y:
+				$AnimatedSprite2D.play("idle")
+			else:
+				pass
+				#$AnimatedSprite2D.play("down")
 			
 
 func getHurt(Damage: int):
