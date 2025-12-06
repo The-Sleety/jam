@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://ctomunlfo5xq2"]
+[gd_scene load_steps=17 format=3 uid="uid://ctomunlfo5xq2"]
 
 [ext_resource type="Script" uid="uid://bu5m7p4kmugxl" path="res://Scripts/Entities/villager.gd" id="1_qg623"]
 [ext_resource type="Texture2D" uid="uid://dlee10ejcs8f6" path="res://Assets/Sprite-villager-idle.png" id="2_g1yiw"]
@@ -97,9 +97,6 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qg623"]
 size = Vector2(40, 57)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_qg623"]
-radius = 149.40549
-
 [node name="Villager" type="Node2D" groups=["Enemy"]]
 script = ExtResource("1_qg623")
 
@@ -113,14 +110,6 @@ frame_progress = 0.46439442
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_qg623")
-
-[node name="HitArea" type="Area2D" parent="."]
-position = Vector2(-10, -8)
-scale = Vector2(0.5379919, 0.48689222)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea"]
-position = Vector2(18.58764, 16.430742)
-shape = SubResource("CircleShape2D_qg623")
 
 [node name="HitCooldown" type="Timer" parent="."]
 wait_time = 2.0

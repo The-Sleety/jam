@@ -1,8 +1,9 @@
-[gd_scene load_steps=58 format=3 uid="uid://cbjocjb0lxk81"]
+[gd_scene load_steps=59 format=3 uid="uid://cbjocjb0lxk81"]
 
 [ext_resource type="Script" uid="uid://cqqb8sqyiayie" path="res://Scenes/Entities/player.gd" id="1_3kvya"]
 [ext_resource type="Texture2D" uid="uid://bg46gaqrp4lam" path="res://Assets/bat.png" id="3_agccv"]
 [ext_resource type="Script" uid="uid://d2472cinytg7v" path="res://Scenes/Entities/button.gd" id="3_g4oe6"]
+[ext_resource type="Script" uid="uid://bc41wgjnuaynt" path="res://Scenes/Entities/button_2.gd" id="4_4kc40"]
 [ext_resource type="Script" uid="uid://dtqbvkkqgkudh" path="res://Scenes/Entities/progress_bar.gd" id="4_g4oe6"]
 [ext_resource type="FontFile" uid="uid://c0om5ufvy13lu" path="res://Assets/retro-pixel-thick.ttf" id="4_rsj4h"]
 [ext_resource type="Texture2D" uid="uid://bgyejdjohwrmy" path="res://Assets/Sprite-vampire-idle.png" id="5_86atj"]
@@ -383,6 +384,24 @@ theme_override_font_sizes/font_size = 32
 text = "Yeniden Dog"
 script = ExtResource("3_g4oe6")
 
+[node name="Button2" type="Button" parent="CanvasLayer/DeathScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = 70.0
+offset_right = 150.0
+offset_bottom = 130.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_rsj4h")
+theme_override_font_sizes/font_size = 32
+text = "Ana Menu"
+script = ExtResource("4_4kc40")
+
 [node name="Label" type="Label" parent="CanvasLayer/DeathScreen"]
 texture_filter = 1
 layout_mode = 1
@@ -533,4 +552,6 @@ zoom = Vector2(0.885, 0.885)
 
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="pressed" from="CanvasLayer/DeathScreen/Button" to="CanvasLayer/DeathScreen/Button" method="_on_pressed"]
+[connection signal="pressed" from="CanvasLayer/DeathScreen/Button2" to="CanvasLayer/DeathScreen/Button2" method="_on_pressed"]
+[connection signal="body_entered" from="HitArea" to="." method="_on_hit_area_body_entered"]
 [connection signal="timeout" from="HitCooldown" to="." method="_on_hit_cooldown_timeout"]
