@@ -30,10 +30,10 @@ texture = ExtResource("3_ur25d")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-offset_left = 53.0
-offset_top = 169.0
-offset_right = 273.0
-offset_bottom = 392.0
+offset_left = 69.0
+offset_top = 171.0
+offset_right = 289.0
+offset_bottom = 394.0
 color = Color(0, 0, 0, 0.5686275)
 
 [node name="Button" type="Button" parent="CanvasLayer"]

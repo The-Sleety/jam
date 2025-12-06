@@ -13,7 +13,7 @@ func _process(delta: float) -> void:
 			$Timer.start
 	else:
 		if get_tree().get_first_node_in_group("Player").Health <= 100:
-			get_tree().get_first_node_in_group("Player").Health += 1
+			get_tree().get_first_node_in_group("Player").Health += 0.1
 
 
 func _on_body_entered(body: Node2D) -> void:

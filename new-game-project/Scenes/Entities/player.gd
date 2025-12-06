@@ -4,7 +4,7 @@ extends CharacterBody2D
 @export var flySpeed : float = 400.0
 var Speed = Base_Speed
 var IsDead : bool = false
-@export var Health : int
+@export var Health : float
 @export var isVampire : bool = true
 @export var damage : float 
 var canBite = true
@@ -39,9 +39,6 @@ func _physics_process(_delta: float) -> void:
 	
 	if Input.is_action_just_pressed("hit"):
 		bite()
-	
-	if Input.is_action_just_pressed("transform"):
-		transform()
 
 func transform():
 		if isVampire:
@@ -67,10 +64,10 @@ func bite():
 			var enemyDistance = global_position.distance_to(enemy.global_position)
 			if canBite:
 				if enemy.is_in_group("Enemy"):
+					canBite = false
 					$vampire.play("biting")
 					enemy.getHurt(randf_range(40,60))
 					$HitCooldown.start()
-					canBite = false
 		else:
 			return
 

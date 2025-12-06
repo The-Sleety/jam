@@ -1,9 +1,10 @@
-[gd_scene load_steps=57 format=3 uid="uid://cbjocjb0lxk81"]
+[gd_scene load_steps=58 format=3 uid="uid://cbjocjb0lxk81"]
 
 [ext_resource type="Script" uid="uid://cqqb8sqyiayie" path="res://Scenes/Entities/player.gd" id="1_3kvya"]
 [ext_resource type="Texture2D" uid="uid://bg46gaqrp4lam" path="res://Assets/bat.png" id="3_agccv"]
 [ext_resource type="Script" uid="uid://d2472cinytg7v" path="res://Scenes/Entities/button.gd" id="3_g4oe6"]
-[ext_resource type="Script" path="res://Scenes/Entities/progress_bar.gd" id="4_g4oe6"]
+[ext_resource type="Script" uid="uid://dtqbvkkqgkudh" path="res://Scenes/Entities/progress_bar.gd" id="4_g4oe6"]
+[ext_resource type="FontFile" uid="uid://c0om5ufvy13lu" path="res://Assets/retro-pixel-thick.ttf" id="4_rsj4h"]
 [ext_resource type="Texture2D" uid="uid://bgyejdjohwrmy" path="res://Assets/Sprite-vampire-idle.png" id="5_86atj"]
 [ext_resource type="Texture2D" uid="uid://b0rdvn7an3k05" path="res://Assets/Sprite-vampire-arkaya-yuruyus.png" id="5_ynt0t"]
 [ext_resource type="Texture2D" uid="uid://6xlxaix2b8o8" path="res://Assets/Sprite-vampire-biting.png" id="6_km4ui"]
@@ -20,7 +21,7 @@ size = Vector2(26, 18)
 font_size = 50
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_86atj"]
-bg_color = Color(0.9607843, 1, 0, 1)
+bg_color = Color(0.6455512, 2.5629624e-06, 4.813075e-07, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_86atj"]
 atlas = ExtResource("3_agccv")
@@ -344,7 +345,6 @@ radius = 85.90693
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 slide_on_ceiling = false
 script = ExtResource("1_3kvya")
-Health = 100
 
 [node name="BatCollision" type="CollisionShape2D" parent="."]
 position = Vector2(20, 20)
@@ -378,23 +378,99 @@ offset_right = 150.0
 offset_bottom = 39.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Yeniden Doğ"
+theme_override_fonts/font = ExtResource("4_rsj4h")
+theme_override_font_sizes/font_size = 32
+text = "Yeniden Dog"
 script = ExtResource("3_g4oe6")
 
 [node name="Label" type="Label" parent="CanvasLayer/DeathScreen"]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -95.0
-offset_top = -151.5
-offset_right = 95.0
-offset_bottom = -82.5
+offset_left = -65.0
+offset_top = -135.0
+offset_right = 60.0
+offset_bottom = -72.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "ÖLDÜN"
+theme_override_fonts/font = ExtResource("4_rsj4h")
+text = "OLDUN"
+label_settings = SubResource("LabelSettings_agccv")
+
+[node name="Label2" type="Label" parent="CanvasLayer/DeathScreen"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -65.0
+offset_top = -171.0
+offset_right = -49.0
+offset_bottom = -108.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_rsj4h")
+text = "."
+label_settings = SubResource("LabelSettings_agccv")
+
+[node name="Label3" type="Label" parent="CanvasLayer/DeathScreen"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -56.0
+offset_top = -171.0
+offset_right = -40.0
+offset_bottom = -108.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_rsj4h")
+text = "."
+label_settings = SubResource("LabelSettings_agccv")
+
+[node name="Label4" type="Label" parent="CanvasLayer/DeathScreen"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 7.0
+offset_top = -172.0
+offset_right = 23.0
+offset_bottom = -109.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_rsj4h")
+text = "."
+label_settings = SubResource("LabelSettings_agccv")
+
+[node name="Label5" type="Label" parent="CanvasLayer/DeathScreen"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 16.0
+offset_top = -172.0
+offset_right = 32.0
+offset_bottom = -109.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_rsj4h")
+text = "."
 label_settings = SubResource("LabelSettings_agccv")
 
 [node name="HealthBar" type="ProgressBar" parent="CanvasLayer"]
@@ -406,6 +482,24 @@ scale = Vector2(0.67830276, 0.749946)
 theme_override_styles/fill = SubResource("StyleBoxFlat_86atj")
 show_percentage = false
 script = ExtResource("4_g4oe6")
+
+[node name="Label" type="Label" parent="CanvasLayer/HealthBar"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -44.0
+offset_top = -20.0
+offset_right = 44.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_rsj4h")
+theme_override_font_sizes/font_size = 32
+text = "Health"
 
 [node name="Bat" type="AnimatedSprite2D" parent="."]
 visible = false
