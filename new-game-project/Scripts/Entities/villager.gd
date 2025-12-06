@@ -11,7 +11,7 @@ var cooldown = 2.4
 var maxHealth = randf_range(80,120)
 var Health = maxHealth
 var canMove = true
-
+var isDed: bool = false
 func _ready() -> void:
 	astar_grip = AStarGrid2D.new()
 	astar_grip.region = tile_map.get_used_rect()
@@ -98,6 +98,7 @@ func getHurt(Damage: int):
 
 	Health -= Damage
 	if Health <= 0:
+		isDed = true
 		player.score += 20
 		queue_free()
 		

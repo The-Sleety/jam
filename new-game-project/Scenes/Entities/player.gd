@@ -14,6 +14,7 @@ var knockback_timer : float = 0.0
 var canBite = true
 var enemies_in_range = []
 
+var maxKillsToWin: int
 
 var score = 0000
 func _ready() -> void:
@@ -110,6 +111,13 @@ func bite():
 	score += 5
 	$HitCooldown.start()
 	$Hit.play()
+	if enemy.isDed:
+		maxKillsToWin+=1
+		if maxKillsToWin == 15:
+			$CanvasLayer/Control.show()
+			$CanvasLayer/HealthBar.hide()
+			get_tree().paused = true
+		
 
 func getHurt(dmg:int):
 	Health -= dmg
