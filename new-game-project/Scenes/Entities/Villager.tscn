@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://ctomunlfo5xq2"]
+[gd_scene load_steps=21 format=3 uid="uid://ctomunlfo5xq2"]
 
 [ext_resource type="Script" uid="uid://bu5m7p4kmugxl" path="res://Scripts/Entities/villager.gd" id="1_qg623"]
 [ext_resource type="Texture2D" uid="uid://dlee10ejcs8f6" path="res://Assets/Sprite-villager-idle.png" id="2_g1yiw"]
+[ext_resource type="Texture2D" uid="uid://cxnnrqxfpy0iu" path="res://Assets/köylü öldürme.png" id="3_4gvho"]
 [ext_resource type="Texture2D" uid="uid://brgwq5eqj1r0v" path="res://Assets/Sprite-villager-yuruyus-saga.png" id="3_qq6i3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qq6i3"]
@@ -19,6 +20,18 @@ region = Rect2(128, 0, 64, 64)
 [sub_resource type="AtlasTexture" id="AtlasTexture_f7yqm"]
 atlas = ExtResource("2_g1yiw")
 region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ah03g"]
+atlas = ExtResource("3_4gvho")
+region = Rect2(0, 0, 110, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_81rnw"]
+atlas = ExtResource("3_4gvho")
+region = Rect2(110, 0, 110, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tiu1n"]
+atlas = ExtResource("3_4gvho")
+region = Rect2(220, 0, 110, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v5rta"]
 atlas = ExtResource("3_qq6i3")
@@ -69,6 +82,26 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_ah03g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_81rnw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tiu1n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_81rnw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ah03g")
+}],
+"loop": true,
+"name": &"killing",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_v5rta")
 }, {
 "duration": 1.0,
@@ -103,9 +136,9 @@ script = ExtResource("1_qg623")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_qg623")
-animation = &"left"
+animation = &"killing"
 frame = 2
-frame_progress = 0.46439442
+frame_progress = 0.36075968
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)

@@ -50,6 +50,7 @@ func _physics_process(_delta: float) -> void:
 	#var velocity = direction * Speed
 	if distance_to_player <= 16:
 		if canHit:
+			$AnimatedSprite2D.play("killing")
 			var damage = randi_range(10,20)
 			$"../Player".getHurt(damage)
 			canHit = false
