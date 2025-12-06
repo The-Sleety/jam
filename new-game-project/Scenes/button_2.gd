@@ -12,3 +12,11 @@ func _process(delta: float) -> void:
 	
 func _on_pressed() -> void:
 	get_tree().quit()
+
+
+func _on_mouse_entered() -> void:
+	add_theme_font_size_override("font_size", 35)
+
+
+func _on_mouse_exited() -> void:
+	add_theme_font_size_override("font_size", 25)

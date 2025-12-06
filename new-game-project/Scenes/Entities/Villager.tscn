@@ -157,6 +157,7 @@ shape = SubResource("CircleShape2D_4gvho")
 
 [node name="Death" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_v5rta")
+volume_db = 24.0
 
 [node name="Hit" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_ifrv4")
@@ -167,3 +168,4 @@ parameters/looping = true
 
 [connection signal="timeout" from="HitCooldown" to="." method="_on_hit_cooldown_timeout"]
 [connection signal="timeout" from="HitResultCooldown" to="." method="_on_hit_result_cooldown_timeout"]
+[connection signal="finished" from="Death" to="." method="_on_death_finished"]

@@ -1,10 +1,53 @@
-[gd_scene load_steps=6 format=3 uid="uid://c0i53vod117be"]
+[gd_scene load_steps=11 format=3 uid="uid://c0i53vod117be"]
 
 [ext_resource type="FontFile" uid="uid://c0om5ufvy13lu" path="res://Assets/retro-pixel-thick.ttf" id="1_eotax"]
 [ext_resource type="Script" uid="uid://cyyw4184hagrx" path="res://Scenes/button.gd" id="1_totuj"]
+[ext_resource type="Texture2D" uid="uid://bld2hahcqdggu" path="res://Assets/sato1.png" id="1_udm2q"]
 [ext_resource type="Script" uid="uid://drqo3jjcgc6vm" path="res://Scenes/button_2.gd" id="2_hcxxy"]
-[ext_resource type="Texture2D" uid="uid://b33exlptmv6ip" path="res://Assets/SATO YENİ.png" id="3_ur25d"]
 [ext_resource type="AudioStream" uid="uid://b3ktym0ldjrgs" path="res://Assets/music/main-menu.mp3" id="5_udm2q"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_udm2q"]
+light_mode = 1
+
+[sub_resource type="Animation" id="Animation_udm2q"]
+resource_name = "fade"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_mjet1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_0126h"]
+resource_name = "closeCanvas"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0126h"]
+_data = {
+&"RESET": SubResource("Animation_mjet1"),
+&"closeCanvas": SubResource("Animation_0126h"),
+&"fade": SubResource("Animation_udm2q")
+}
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -26,7 +69,7 @@ grow_vertical = 2
 [node name="SatoYeni" type="Sprite2D" parent="Control"]
 texture_filter = 1
 position = Vector2(384, 256)
-texture = ExtResource("3_ur25d")
+texture = ExtResource("1_udm2q")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -38,26 +81,32 @@ offset_bottom = 394.0
 color = Color(0, 0, 0, 0.5686275)
 
 [node name="Button" type="Button" parent="CanvasLayer"]
-offset_left = 82.0
+texture_filter = 1
+offset_left = 84.0
 offset_top = 262.0
-offset_right = 226.0
+offset_right = 228.0
 offset_bottom = 305.0
 theme_override_fonts/font = ExtResource("1_eotax")
 theme_override_font_sizes/font_size = 25
 text = "Start Game"
+flat = true
 script = ExtResource("1_totuj")
 
 [node name="Button2" type="Button" parent="CanvasLayer"]
-offset_left = 84.0
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_udm2q")
+offset_left = 83.0
 offset_top = 332.0
-offset_right = 137.0
+offset_right = 136.0
 offset_bottom = 375.0
 theme_override_fonts/font = ExtResource("1_eotax")
 theme_override_font_sizes/font_size = 25
 text = "Exit"
+flat = true
 script = ExtResource("2_hcxxy")
 
 [node name="Label" type="Label" parent="CanvasLayer"]
+texture_filter = 1
 offset_left = 82.0
 offset_top = 177.0
 offset_right = 287.0
@@ -70,5 +119,24 @@ text = "Vampires"
 stream = ExtResource("5_udm2q")
 autoplay = true
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_0126h")
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = 6
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[connection signal="mouse_entered" from="CanvasLayer/Button" to="CanvasLayer/Button" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/Button" to="CanvasLayer/Button" method="_on_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/Button" to="CanvasLayer/Button" method="_on_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/Button2" to="CanvasLayer/Button2" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/Button2" to="CanvasLayer/Button2" method="_on_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/Button2" to="CanvasLayer/Button2" method="_on_pressed"]

@@ -51,7 +51,7 @@ func _physics_process(_delta: float) -> void:
 	#var direction = current_id_path.front()
 	#var velocity = direction * Speed
 	if distance_to_player <= 16:
-		if canHit:
+		if canHit and $"../Player".isVampire:
 			$AnimatedSprite2D.play("killing")
 			var damage = randi_range(10,20)
 			damage_number(damage,Vector2($"../Player".global_position.x, $"../Player".global_position.y - 10) )
@@ -99,8 +99,8 @@ func getHurt(Damage: int):
 	Health -= Damage
 	if Health <= 0:
 		player.score += 20
-		$Death.play()
 		queue_free()
+		
 
 
 func _on_hit_cooldown_timeout() -> void:
@@ -110,7 +110,7 @@ func _on_hit_result_cooldown_timeout() -> void:
 	canMove = true
 	canHit = true
 
-func damage_number(amount: int, position: Vector2):
+func damage_number(amount: int, _position: Vector2):
 	# Create a label on the fly
 	var label := Label.new()
 	label.text = str(amount)

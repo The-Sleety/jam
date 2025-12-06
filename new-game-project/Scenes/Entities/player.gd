@@ -4,15 +4,16 @@ extends CharacterBody2D
 @export var flySpeed : float = 400.0
 var Speed = Base_Speed
 var IsDead : bool = false
-@export var Health : float
+@export var Health : float = 100
 @export var isVampire : bool = true
-@export var damage : float 
+var my_font = preload("res://Assets/retro-pixel-thick.ttf")
 
 var knockback : Vector2 = Vector2.ZERO
 var knockback_timer : float = 0.0
 
 var canBite = true
 var enemies_in_range = []
+
 
 var score = 0000
 func _ready() -> void:
@@ -60,8 +61,8 @@ func _physics_process(delta: float) -> void:
 		
 	if Input.is_action_just_pressed("transform"):
 		transform()
-		
-	
+	if Input.is_action_just_pressed("pause"):
+		pause()
 
 func transform():
 		if isVampire:
@@ -71,7 +72,6 @@ func transform():
 			$Bat.visible = true
 			$vampire.visible = false
 			isVampire = false
-			damage = 30
 			$Flap.stop()
 			$Walk.play()
 		elif !isVampire:
@@ -79,6 +79,7 @@ func transform():
 			$VampireCollision.disabled = true
 			isVampire = true
 			Speed = Base_Speed
+			Health -= 0.15
 			$Bat.visible = false
 			$vampire.visible = true
 			$Flap.play()
@@ -102,6 +103,7 @@ func bite():
 		return
 	var enemy = enemies_in_range[0]
 	canBite = false
+	var damage : float = randf_range(20,50)
 	damage_number(damage, Vector2(enemy.global_position.x, enemy.global_position.y))
 	$vampire.play("biting")
 	enemy.getHurt(randf_range(40, 60))
@@ -115,9 +117,8 @@ func getHurt(dmg:int):
 		die()
 		
 func die():
-	$CanvasLayer/DeathScreen.show()
 	$Death.play()
-	get_tree().paused = true
+
 
 func _on_hit_cooldown_timeout() -> void:
 	canBite = true
@@ -127,25 +128,30 @@ func apply_knockback(direction : Vector2,force : float,knockback_duration : floa
 	knockback_timer = knockback_duration
 
 func damage_number(amount: int, position: Vector2):
-	# Create a label on the fly 
 	var label := Label.new()
 	label.text = str(amount)
 	label.position = position
-	label.modulate = Color(1, 1, 1, 1)
-	label.add_theme_color_override("font_color", Color.WHITE_SMOKE)
-
-	# Add to current scene
+	label.modulate = Color(1.0, 1.0, 1.0, 1.0)
+	label.add_theme_color_override("font_color", Color.WHITE_SMOKE)		
+	label.add_theme_font_override("font", my_font)
+	label.add_theme_font_size_override("font_size", 32)	
 	get_tree().current_scene.add_child(label)
-
-	# Make it float + fade + delete
 	var tween := label.create_tween()
 	tween.set_parallel()
-
-	# Float upward
 	tween.tween_property(label, "position:y", position.y - 40, 0.5)
-
-	# Fade out
 	tween.tween_property(label, "modulate:a", 0.0, 0.5)
 
-	# Remove when finished
 	tween.finished.connect(label.queue_free)
+	
+	$CPUParticles2D.position = label.position
+	$CPUParticles2D.emitting = true
+
+
+func pause():
+	$CanvasLayer/PauseScreen.show()
+	get_tree().paused = true
+
+
+func _on_death_finished() -> void:
+	$CanvasLayer/DeathScreen.show()
+	get_tree().paused = true

@@ -1,13 +1,15 @@
-[gd_scene load_steps=63 format=3 uid="uid://cbjocjb0lxk81"]
+[gd_scene load_steps=67 format=3 uid="uid://cbjocjb0lxk81"]
 
 [ext_resource type="Script" uid="uid://cqqb8sqyiayie" path="res://Scenes/Entities/player.gd" id="1_3kvya"]
 [ext_resource type="Texture2D" uid="uid://bg46gaqrp4lam" path="res://Assets/bat.png" id="3_agccv"]
 [ext_resource type="Script" uid="uid://d2472cinytg7v" path="res://Scenes/Entities/button.gd" id="3_g4oe6"]
 [ext_resource type="Script" uid="uid://bc41wgjnuaynt" path="res://Scenes/Entities/button_2.gd" id="4_4kc40"]
-[ext_resource type="Script" path="res://Scenes/Entities/progress_bar.gd" id="4_g4oe6"]
+[ext_resource type="Script" uid="uid://dtqbvkkqgkudh" path="res://Scenes/Entities/progress_bar.gd" id="4_g4oe6"]
 [ext_resource type="FontFile" uid="uid://c0om5ufvy13lu" path="res://Assets/retro-pixel-thick.ttf" id="4_rsj4h"]
+[ext_resource type="Script" uid="uid://cebn3ru6blbxx" path="res://Scenes/Entities/button_resume.gd" id="5_0hljs"]
 [ext_resource type="Texture2D" uid="uid://bgyejdjohwrmy" path="res://Assets/Sprite-vampire-idle.png" id="5_86atj"]
 [ext_resource type="Texture2D" uid="uid://b0rdvn7an3k05" path="res://Assets/Sprite-vampire-arkaya-yuruyus.png" id="5_ynt0t"]
+[ext_resource type="Script" uid="uid://dw4tktmap4r5p" path="res://Scenes/Entities/button_exit.gd" id="6_crkm8"]
 [ext_resource type="Texture2D" uid="uid://6xlxaix2b8o8" path="res://Assets/Sprite-vampire-biting.png" id="6_km4ui"]
 [ext_resource type="Texture2D" uid="uid://bjjhbc8ntfxrx" path="res://Assets/vampirsagsol.png" id="6_yu0ev"]
 [ext_resource type="Texture2D" uid="uid://bxm6v7hu1ma3d" path="res://Assets/Sprite-vampire-one-yuruyus.png" id="7_td8ue"]
@@ -20,7 +22,7 @@
 radius = 20.024984
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_86atj"]
-size = Vector2(26, 18)
+size = Vector2(26, 45)
 
 [sub_resource type="LabelSettings" id="LabelSettings_agccv"]
 font_size = 50
@@ -347,17 +349,24 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_g4oe6"]
 radius = 85.90693
 
+[sub_resource type="Gradient" id="Gradient_j230w"]
+colors = PackedColorArray(0.56078434, 0, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="Gradient" id="Gradient_crkm8"]
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 slide_on_ceiling = false
 script = ExtResource("1_3kvya")
 
 [node name="BatCollision" type="CollisionShape2D" parent="."]
-position = Vector2(20, 20)
+visible = false
+position = Vector2(19, 20)
+scale = Vector2(1.2000018, 1)
 shape = SubResource("CircleShape2D_2tapu")
 disabled = true
 
 [node name="VampireCollision" type="CollisionShape2D" parent="."]
-position = Vector2(20, 32)
+position = Vector2(20, 18.5)
 shape = SubResource("RectangleShape2D_86atj")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -371,6 +380,7 @@ offset_right = 768.0
 offset_bottom = 514.0
 
 [node name="Button" type="Button" parent="CanvasLayer/DeathScreen"]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -389,6 +399,7 @@ text = "Yeniden Dog"
 script = ExtResource("3_g4oe6")
 
 [node name="Button2" type="Button" parent="CanvasLayer/DeathScreen"]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -500,6 +511,94 @@ theme_override_fonts/font = ExtResource("4_rsj4h")
 text = "."
 label_settings = SubResource("LabelSettings_agccv")
 
+[node name="PauseScreen" type="Control" parent="CanvasLayer"]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_top = -2.0
+offset_right = 768.0
+offset_bottom = 512.0
+
+[node name="Button" type="Button" parent="CanvasLayer/PauseScreen"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -21.0
+offset_right = 150.0
+offset_bottom = 39.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_rsj4h")
+theme_override_font_sizes/font_size = 32
+text = "Devam Et"
+script = ExtResource("5_0hljs")
+
+[node name="Button2" type="Button" parent="CanvasLayer/PauseScreen"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = 141.0
+offset_right = 150.0
+offset_bottom = 201.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_rsj4h")
+theme_override_font_sizes/font_size = 32
+text = "Çıkış"
+script = ExtResource("6_crkm8")
+
+[node name="Button3" type="Button" parent="CanvasLayer/PauseScreen"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = 60.0
+offset_right = 150.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_rsj4h")
+theme_override_font_sizes/font_size = 32
+text = "Ana Menuye Don"
+script = ExtResource("4_4kc40")
+
+[node name="Label" type="Label" parent="CanvasLayer/PauseScreen"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -65.0
+offset_top = -135.0
+offset_right = 60.0
+offset_bottom = -72.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_rsj4h")
+theme_override_font_sizes/font_size = 32
+text = "DURDURULDU"
+label_settings = SubResource("LabelSettings_agccv")
+
 [node name="HealthBar" type="ProgressBar" parent="CanvasLayer"]
 offset_left = 24.000008
 offset_top = 21.999998
@@ -529,6 +628,7 @@ theme_override_font_sizes/font_size = 32
 text = "Health"
 
 [node name="SCORE" type="Label" parent="CanvasLayer"]
+texture_filter = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -560,6 +660,7 @@ grow_vertical = 2
 color = Color(0.15686275, 0.15686275, 0.15686275, 0.6117647)
 
 [node name="PauseLabel" type="Label" parent="CanvasLayer/Pause"]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -604,7 +705,6 @@ one_shot = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(20, 19)
-zoom = Vector2(1.5, 1.5)
 
 [node name="Death" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_0pa8p")
@@ -619,9 +719,29 @@ parameters/looping = true
 [node name="Walk" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("15_j230w")
 
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(234, 236)
+emitting = false
+amount = 64
+one_shot = true
+speed_scale = 2.5
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 3.0
+initial_velocity_max = 15.0
+color_ramp = SubResource("Gradient_j230w")
+color_initial_ramp = SubResource("Gradient_crkm8")
+hue_variation_min = 1.0
+hue_variation_max = 1.0
+
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="pressed" from="CanvasLayer/DeathScreen/Button" to="CanvasLayer/DeathScreen/Button" method="_on_pressed"]
 [connection signal="pressed" from="CanvasLayer/DeathScreen/Button2" to="CanvasLayer/DeathScreen/Button2" method="_on_pressed"]
+[connection signal="pressed" from="CanvasLayer/PauseScreen/Button" to="CanvasLayer/PauseScreen/Button" method="_on_pressed"]
+[connection signal="pressed" from="CanvasLayer/PauseScreen/Button2" to="CanvasLayer/PauseScreen/Button2" method="_on_pressed"]
+[connection signal="pressed" from="CanvasLayer/PauseScreen/Button3" to="CanvasLayer/PauseScreen/Button3" method="_on_pressed"]
 [connection signal="area_entered" from="HitArea" to="." method="_on_BiteArea_area_entered"]
 [connection signal="area_exited" from="HitArea" to="." method="_on_BiteArea_area_exited"]
 [connection signal="timeout" from="HitCooldown" to="." method="_on_hit_cooldown_timeout"]
+[connection signal="finished" from="Death" to="." method="_on_death_finished"]

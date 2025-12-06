@@ -6,19 +6,18 @@ var canDamage = true
 
 func _process(delta: float) -> void:
 	var player = get_tree().get_first_node_in_group("Player")
-
 	if !playerInside:
 		if canDamage:
 			if player.isVampire:
-				player.getHurt(12)
+				player.Health -= 15
 			else:
 				player.getHurt(6)
 
 			canDamage = false
-			$Timer.start()   # FIXED
+			$Timer.start()
 	else:
 		if player.Health < 100:
-			player.Health += 1
+			player.Health += 0.1
 
 
 func _on_body_entered(body: Node2D) -> void:
