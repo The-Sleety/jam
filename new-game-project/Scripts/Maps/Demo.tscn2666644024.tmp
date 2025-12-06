@@ -11,7 +11,7 @@
 [ext_resource type="Script" uid="uid://dogm7ritavtap" path="res://Scripts/Maps/spawner.gd" id="9_f88e7"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_2828b"]
-polygon = PackedVector2Array(-47.49046, 44.38596, -47.07824, 43.241882, -46.315784, 40.694122, -43.33661, 38.742455, -43.478695, 34.290386, -41.489475, 33.95885, -38.363556, 29.601507, -37.32158, 24.817904, -35.995434, 22.023521, -40.115963, 21.97616, -40.115963, 20.129026, -35.90071, 15.061247, -35.900707, 12.077415, -34.479836, 9.23567, -32.869514, 9.188309, -32.774788, 1.1366978, -36.232246, 1.2314229, -36.13752, 0.33153677, -32.916878, -3.7416308, -30.927656, -3.8363557, -32.064354, -6.015027, -31.969627, -8.051611, -30.975018, -8.951496, -28.27536, -8.951496, -28.180635, -11.840603, -29.933044, -11.7932415, -28.891073, -14.871798, -27.8491, -16.008495, -26.996576, -16.150583, -26.901852, -18.092442, -25.907242, -18.139805, -26.049328, -20.129026, -27.896461, -20.034302, -24.865269, -25.196804, -23.20758, -25.102077, -23.065495, -26.807125, -24.249554, -26.90185, -24.296917, -28.938435, -23.16022, -29.885683, -20.650011, -30.075132, -19.939577, -36.70587, -17.097832, -39.073994, -16.766296, -42.910347, -15.866409, -43.95232, -12.284592, -44.22453, -10.196213, -49.62975, -4.5452995, -57.614735, 2.7688751, -70.06101, 5.3699455, -75.76658, 6.303936, -77.251884, 7.7939568, -75.53263, 8.977879, -74.25629, 9.313499, -70.564445, 11.578945, -70.14492, 14.683445, -71.57131, 16.61327, -66.36917, 16.94889, -56.552246, 15.774216, -53.19603, 16.781082, -49.839813, 19.466053, -50.594963, 19.969488, -49.084663, 18.123568, -45.225014, 21.479784, -43.379097, 21.647596, -39.016014, 19.38215, -37.002285, 23.493513, -36.16323, 27.60488, -33.64607, 29.954231, -27.101444, 35.743702, -26.849731, 36.079323, -17.284513, 35.156364, -13.760487, 32.639206, -12.418, 34.432907, -3.9513168, 36.582756, -1.9298239, 37.253998, 3.0205946, 40.77803, 17.032799, 47.99389, 29.534702, 47.742176, 34.652935, 45.0572, 40.694122, 46.315784, 45.47673, 39.09992, 45.225014, 38.764294, 47.993893, 34.31731, 47.993893, 35.324177, 53.447742, 30.62547, 49.252472, 28.024403, 54.622417, 25.75896, 53.531647, 28.779552, 48.077797, 21.983215, 51.60182, 19.046524, 50.93058, 15.606403, 52.02135, 12.501907, 51.182297, 15.942028, 56.21662, 15.805267, 67.17239, 9.313499, 68.04729, 6.712433, 70.98397, 2.6010704, 72.074745, -3.7757416, 71.90693, -8.054916, 71.73912, -11.578945, 71.06788, -14.767349, 69.8932, -19.633865, 66.20136, -19.885582, 60.327988, -16.529366, 55.041946, -21.983212, 53.951176, -24.584282, 52.35697, -27.353157, 56.468338, -30.205944, 56.38443, -30.205948, 53.27993, -33.98169, 51.60182, -34.065594, 49.420284, -38.009148, 51.01449, -37.254, 46.987026, -41.029743, 47.322647, -42.288326, 49.50419, -45.392826, 48.832947, -45.56064, 46.903122, -39.351635, 41.700985)
+polygon = PackedVector2Array(-50.238174, 45.722385, -30.48159, -11.853951, 7.3381653, -73.38161, 34.432907, -3.9513168, 47.980278, 47.415802, 12.982895, 50.802647, 15.805267, 67.17239, -3.3868446, 73.946075, -22.578957, 68.30133, -16.934216, 51.367123)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mxwhr"]
 texture = ExtResource("1_2828b")
@@ -143,56 +143,9 @@ autostart = true
 [node name="Spawners" type="Node2D" parent="."]
 
 [node name="Spawner" type="Node2D" parent="Spawners"]
-position = Vector2(2531, 1369)
 script = ExtResource("9_f88e7")
-villager = ExtResource("2_uamf7")
 
 [node name="Timer" type="Timer" parent="Spawners/Spawner"]
-wait_time = 2.0
-autostart = true
-
-[node name="Spawner2" type="Node2D" parent="Spawners"]
-position = Vector2(3108, 895)
-script = ExtResource("9_f88e7")
-villager = ExtResource("2_uamf7")
-
-[node name="Timer" type="Timer" parent="Spawners/Spawner2"]
-wait_time = 2.0
-autostart = true
-
-[node name="Spawner3" type="Node2D" parent="Spawners"]
-position = Vector2(3641, 1332)
-script = ExtResource("9_f88e7")
-villager = ExtResource("2_uamf7")
-
-[node name="Timer" type="Timer" parent="Spawners/Spawner3"]
-wait_time = 2.0
-autostart = true
-
-[node name="Spawner4" type="Node2D" parent="Spawners"]
-position = Vector2(3930, 636)
-script = ExtResource("9_f88e7")
-villager = ExtResource("2_uamf7")
-
-[node name="Timer" type="Timer" parent="Spawners/Spawner4"]
-wait_time = 2.0
-autostart = true
-
-[node name="Spawner5" type="Node2D" parent="Spawners"]
-position = Vector2(3175, 1968)
-script = ExtResource("9_f88e7")
-villager = ExtResource("2_uamf7")
-
-[node name="Timer" type="Timer" parent="Spawners/Spawner5"]
-wait_time = 2.0
-autostart = true
-
-[node name="Spawner6" type="Node2D" parent="Spawners"]
-position = Vector2(2576, 540)
-script = ExtResource("9_f88e7")
-villager = ExtResource("2_uamf7")
-
-[node name="Timer" type="Timer" parent="Spawners/Spawner6"]
 wait_time = 2.0
 autostart = true
 
@@ -200,8 +153,3 @@ autostart = true
 [connection signal="body_exited" from="Area2D" to="Area2D" method="_on_body_exited"]
 [connection signal="timeout" from="Area2D/Timer" to="Area2D" method="_on_timer_timeout"]
 [connection signal="timeout" from="Spawners/Spawner/Timer" to="Spawners/Spawner" method="_on_timer_timeout"]
-[connection signal="timeout" from="Spawners/Spawner2/Timer" to="Spawners/Spawner2" method="_on_timer_timeout"]
-[connection signal="timeout" from="Spawners/Spawner3/Timer" to="Spawners/Spawner3" method="_on_timer_timeout"]
-[connection signal="timeout" from="Spawners/Spawner4/Timer" to="Spawners/Spawner4" method="_on_timer_timeout"]
-[connection signal="timeout" from="Spawners/Spawner5/Timer" to="Spawners/Spawner5" method="_on_timer_timeout"]
-[connection signal="timeout" from="Spawners/Spawner6/Timer" to="Spawners/Spawner6" method="_on_timer_timeout"]
