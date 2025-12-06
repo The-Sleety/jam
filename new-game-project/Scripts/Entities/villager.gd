@@ -27,9 +27,11 @@ func _ready() -> void:
 			)
 
 			var tiledata = tile_map.get_cell_tile_data(0, tile_position)
+			var tiledata1 = tile_map.get_cell_tile_data(1, tile_position)
 
 			if tiledata == null or tiledata.get_custom_data("walkable") == false:
-				astar_grip.set_point_solid(tile_position)
+				if tiledata1 == null or tiledata1.get_custom_data("walkable") == false:
+					astar_grip.set_point_solid(tile_position)
 
 
 func _physics_process(_delta: float) -> void:
@@ -46,7 +48,7 @@ func _physics_process(_delta: float) -> void:
 	var distance_to_player = global_position.distance_to($"../Player".global_position)
 	#var direction = current_id_path.front()
 	#var velocity = direction * Speed
-	if distance_to_player < 16:
+	if distance_to_player <= 16:
 		if canHit:
 			var damage = randi_range(10,20)
 			$"../Player".getHurt(damage)
@@ -71,10 +73,10 @@ func get_new_path():
 			var current = current_id_path.front().x
 			if current > last:
 				$AnimatedSprite2D.flip_h = true
-				$AnimatedSprite2D.play("right")
+				#$AnimatedSprite2D.play("right")
 			else:
 				$AnimatedSprite2D.flip_h = false
-				$AnimatedSprite2D.play("right")
+				#$AnimatedSprite2D.play("right")
 			
 
 func getHurt(Damage: int):
